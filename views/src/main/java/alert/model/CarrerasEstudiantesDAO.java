@@ -2,10 +2,11 @@ package alert.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
-import org.hibernate.criterion.Example;
+
+import static org.hibernate.criterion.Example.create;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,7 @@ import connection.BaseHibernateDAOAlert;
  * @see alert.model.CarrerasEstudiantes
  * @author MyEclipse Persistence Tools
  */
-@Entity public class CarrerasEstudiantesDAO extends BaseHibernateDAOAlert {
+public class CarrerasEstudiantesDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(CarrerasEstudiantesDAO.class);
 	// property constants
@@ -63,12 +64,12 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByExample(CarrerasEstudiantes instance) {
+	public List<CarrerasEstudiantes> findByExample(CarrerasEstudiantes instance) {
 		log.debug("finding CarrerasEstudiantes instance by example");
 		try {
-			List results = getSession()
+			List<CarrerasEstudiantes> results = (List<CarrerasEstudiantes>) getSession()
 					.createCriteria("alert.model.CarrerasEstudiantes")
-					.add(Example.create(instance)).list();
+					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;
@@ -93,11 +94,11 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByCodAlumno(Object codAlumno) {
+	public List<CarrerasEstudiantes> findByCodAlumno(Object codAlumno) {
 		return findByProperty(COD_ALUMNO, codAlumno);
 	}
 
-	public List findByIdCarrera(Object idCarrera) {
+	public List<CarrerasEstudiantes> findByIdCarrera(Object idCarrera) {
 		return findByProperty(ID_CARRERA, idCarrera);
 	}
 

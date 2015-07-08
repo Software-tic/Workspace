@@ -2,10 +2,11 @@ package alert.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
-import org.hibernate.criterion.Example;
+
+import static org.hibernate.criterion.Example.create;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,7 @@ import connection.BaseHibernateDAOAlert;
  * @see alert.model.MateriasGrupo
  * @author MyEclipse Persistence Tools
  */
-@Entity public class MateriasGrupoDAO extends BaseHibernateDAOAlert {
+public class MateriasGrupoDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(MateriasGrupoDAO.class);
 	// property constants
@@ -62,12 +63,12 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByExample(MateriasGrupo instance) {
+	public List<MateriasGrupo> findByExample(MateriasGrupo instance) {
 		log.debug("finding MateriasGrupo instance by example");
 		try {
-			List results = getSession()
+			List<MateriasGrupo> results = (List<MateriasGrupo>) getSession()
 					.createCriteria("alert.model.MateriasGrupo")
-					.add(Example.create(instance)).list();
+					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;
@@ -92,7 +93,7 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByIdGrupo(Object idGrupo) {
+	public List<MateriasGrupo> findByIdGrupo(Object idGrupo) {
 		return findByProperty(ID_GRUPO, idGrupo);
 	}
 

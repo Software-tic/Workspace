@@ -2,10 +2,11 @@ package alert.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
-import org.hibernate.criterion.Example;
+
+import static org.hibernate.criterion.Example.create;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,7 @@ import connection.BaseHibernateDAOAlert;
  * @see alert.model.Carreras
  * @author MyEclipse Persistence Tools
  */
-@Entity public class CarrerasDAO extends BaseHibernateDAOAlert {
+public class CarrerasDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(CarrerasDAO.class);
 	// property constants
@@ -63,11 +64,12 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByExample(Carreras instance) {
+	public List<Carreras> findByExample(Carreras instance) {
 		log.debug("finding Carreras instance by example");
 		try {
-			List results = getSession().createCriteria("alert.model.Carreras")
-					.add(Example.create(instance)).list();
+			List<Carreras> results = (List<Carreras>) getSession()
+					.createCriteria("alert.model.Carreras")
+					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;
@@ -92,11 +94,11 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByFacultad(Object facultad) {
+	public List<Carreras> findByFacultad(Object facultad) {
 		return findByProperty(FACULTAD, facultad);
 	}
 
-	public List findByNombre(Object nombre) {
+	public List<Carreras> findByNombre(Object nombre) {
 		return findByProperty(NOMBRE, nombre);
 	}
 

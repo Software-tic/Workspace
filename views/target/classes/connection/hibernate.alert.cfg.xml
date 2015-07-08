@@ -9,7 +9,9 @@
 	<property name="dialect">
 		org.hibernate.dialect.PostgreSQLDialect
 	</property>
-	<property name="connection.url">jdbc:postgresql://localhost:5432/alert2</property>
+	<property name="connection.url">
+		jdbc:postgresql://172.21.1.13:5432/alert2
+	</property>
 	<property name="connection.username">zyos</property>
 	<property name="connection.password">al3rt4ust4</property>
 	<property name="connection.driver_class">
@@ -19,23 +21,23 @@
 	<property name="hibernate.temp.use_jdbc_metadata_defaults">
 		false
 	</property>
-	<mapping resource="alert/model/Carreras.hbm.xml" />
-	<mapping resource="alert/model/CarrerasDocentesFacultades.hbm.xml" />
-	<mapping resource="alert/model/CarrerasEstudiantes.hbm.xml" />
-	<mapping resource="alert/model/DecanoFacultad.hbm.xml" />
-	<mapping resource="alert/model/Docente.hbm.xml" />
-	<mapping resource="alert/model/DocenteMateriaGrupo.hbm.xml" />
-	<mapping resource="alert/model/DocentesMaterias.hbm.xml" />
-	<mapping resource="alert/model/Estudiante.hbm.xml" />
-	<mapping resource="alert/model/EstudiantesMateriasGrupo.hbm.xml" />
-	<mapping resource="alert/model/EstudiantesMateriasHorarios.hbm.xml" />
-	<mapping resource="alert/model/Facultades.hbm.xml" />
-	<mapping resource="alert/model/Grupo.hbm.xml" />
-	<mapping resource="alert/model/Horarios.hbm.xml" />
-	<mapping resource="alert/model/Materias.hbm.xml" />
-	<mapping resource="alert/model/MateriasEstudiantes.hbm.xml" />
-	<mapping resource="alert/model/MateriasGrupo.hbm.xml" />
-	<mapping resource="alert/model/NotasPeriodo.hbm.xml" />
+	<mapping class="alert.model.Carreras" />
+	<mapping class="alert.model.CarrerasDocentesFacultades" />
+	<mapping class="alert.model.CarrerasEstudiantes" />
+	<mapping class="alert.model.DecanoFacultad" />
+	<mapping class="alert.model.Docente" />
+	<mapping class="alert.model.DocenteMateriaGrupo" />
+	<mapping class="alert.model.DocentesMaterias" />
+	<mapping class="alert.model.Estudiante" />
+	<mapping class="alert.model.EstudiantesMateriasGrupo" />
+	<mapping class="alert.model.EstudiantesMateriasHorarios" />
+	<mapping class="alert.model.Facultades" />
+	<mapping class="alert.model.Grupo" />
+	<mapping class="alert.model.Horarios" />
+	<mapping class="alert.model.Materias" />
+	<mapping class="alert.model.MateriasEstudiantes" />
+	<mapping class="alert.model.MateriasGrupo" />
+	<mapping class="alert.model.NotasPeriodo" />
 
 </session-factory>
 

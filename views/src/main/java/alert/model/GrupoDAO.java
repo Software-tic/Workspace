@@ -2,10 +2,11 @@ package alert.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
-import org.hibernate.criterion.Example;
+
+import static org.hibernate.criterion.Example.create;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,7 @@ import connection.BaseHibernateDAOAlert;
  * @see alert.model.Grupo
  * @author MyEclipse Persistence Tools
  */
-@Entity public class GrupoDAO extends BaseHibernateDAOAlert {
+public class GrupoDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory.getLogger(GrupoDAO.class);
 	// property constants
 	public static final String AULA = "aula";
@@ -61,11 +62,12 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByExample(Grupo instance) {
+	public List<Grupo> findByExample(Grupo instance) {
 		log.debug("finding Grupo instance by example");
 		try {
-			List results = getSession().createCriteria("alert.model.Grupo")
-					.add(Example.create(instance)).list();
+			List<Grupo> results = (List<Grupo>) getSession()
+					.createCriteria("alert.model.Grupo").add(create(instance))
+					.list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;
@@ -90,11 +92,11 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByAula(Object aula) {
+	public List<Grupo> findByAula(Object aula) {
 		return findByProperty(AULA, aula);
 	}
 
-	public List findByNombreGrupo(Object nombreGrupo) {
+	public List<Grupo> findByNombreGrupo(Object nombreGrupo) {
 		return findByProperty(NOMBRE_GRUPO, nombreGrupo);
 	}
 

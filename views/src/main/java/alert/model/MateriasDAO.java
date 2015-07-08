@@ -2,10 +2,11 @@ package alert.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
-import org.hibernate.criterion.Example;
+
+import static org.hibernate.criterion.Example.create;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,7 @@ import connection.BaseHibernateDAOAlert;
  * @see alert.model.Materias
  * @author MyEclipse Persistence Tools
  */
-@Entity public class MateriasDAO extends BaseHibernateDAOAlert {
+public class MateriasDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(MateriasDAO.class);
 	// property constants
@@ -66,11 +67,12 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByExample(Materias instance) {
+	public List<Materias> findByExample(Materias instance) {
 		log.debug("finding Materias instance by example");
 		try {
-			List results = getSession().createCriteria("alert.model.Materias")
-					.add(Example.create(instance)).list();
+			List<Materias> results = (List<Materias>) getSession()
+					.createCriteria("alert.model.Materias")
+					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;
@@ -95,23 +97,23 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByFechaFin(Object fechaFin) {
+	public List<Materias> findByFechaFin(Object fechaFin) {
 		return findByProperty(FECHA_FIN, fechaFin);
 	}
 
-	public List findByFechaInicio(Object fechaInicio) {
+	public List<Materias> findByFechaInicio(Object fechaInicio) {
 		return findByProperty(FECHA_INICIO, fechaInicio);
 	}
 
-	public List findByIntHoraria(Object intHoraria) {
+	public List<Materias> findByIntHoraria(Object intHoraria) {
 		return findByProperty(INT_HORARIA, intHoraria);
 	}
 
-	public List findByNombre(Object nombre) {
+	public List<Materias> findByNombre(Object nombre) {
 		return findByProperty(NOMBRE, nombre);
 	}
 
-	public List findBySemestre(Object semestre) {
+	public List<Materias> findBySemestre(Object semestre) {
 		return findByProperty(SEMESTRE, semestre);
 	}
 

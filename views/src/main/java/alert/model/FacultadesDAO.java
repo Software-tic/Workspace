@@ -2,10 +2,11 @@ package alert.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
-import org.hibernate.criterion.Example;
+
+import static org.hibernate.criterion.Example.create;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,7 @@ import connection.BaseHibernateDAOAlert;
  * @see alert.model.Facultades
  * @author MyEclipse Persistence Tools
  */
-@Entity public class FacultadesDAO extends BaseHibernateDAOAlert {
+public class FacultadesDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(FacultadesDAO.class);
 	// property constants
@@ -62,12 +63,12 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByExample(Facultades instance) {
+	public List<Facultades> findByExample(Facultades instance) {
 		log.debug("finding Facultades instance by example");
 		try {
-			List results = getSession()
+			List<Facultades> results = (List<Facultades>) getSession()
 					.createCriteria("alert.model.Facultades")
-					.add(Example.create(instance)).list();
+					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;
@@ -92,7 +93,7 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByFacultad(Object facultad) {
+	public List<Facultades> findByFacultad(Object facultad) {
 		return findByProperty(FACULTAD, facultad);
 	}
 

@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
-import org.hibernate.criterion.Example;
+
+import static org.hibernate.criterion.Example.create;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +51,7 @@ public class NotasPeriodoDAO extends BaseHibernateDAOAlert {
 		}
 	}
 
-	public NotasPeriodo findById(alert.model.AbstractNotasPeriodo id) {
+	public NotasPeriodo findById(alert.model.NotasPeriodoId id) {
 		log.debug("getting NotasPeriodo instance with id: " + id);
 		try {
 			NotasPeriodo instance = (NotasPeriodo) getSession().get(
@@ -61,12 +63,12 @@ public class NotasPeriodoDAO extends BaseHibernateDAOAlert {
 		}
 	}
 
-	public List findByExample(NotasPeriodo instance) {
+	public List<NotasPeriodo> findByExample(NotasPeriodo instance) {
 		log.debug("finding NotasPeriodo instance by example");
 		try {
-			List results = getSession()
+			List<NotasPeriodo> results = (List<NotasPeriodo>) getSession()
 					.createCriteria("alert.model.NotasPeriodo")
-					.add(Example.create(instance)).list();
+					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;

@@ -2,10 +2,11 @@ package alert.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
-import org.hibernate.criterion.Example;
+
+import static org.hibernate.criterion.Example.create;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +24,7 @@ import connection.BaseHibernateDAOAlert;
  * @see alert.model.EstudiantesMateriasHorarios
  * @author MyEclipse Persistence Tools
  */
-@Entity public class EstudiantesMateriasHorariosDAO extends BaseHibernateDAOAlert {
+public class EstudiantesMateriasHorariosDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(EstudiantesMateriasHorariosDAO.class);
 	// property constants
@@ -66,12 +67,13 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByExample(EstudiantesMateriasHorarios instance) {
+	public List<EstudiantesMateriasHorarios> findByExample(
+			EstudiantesMateriasHorarios instance) {
 		log.debug("finding EstudiantesMateriasHorarios instance by example");
 		try {
-			List results = getSession()
+			List<EstudiantesMateriasHorarios> results = (List<EstudiantesMateriasHorarios>) getSession()
 					.createCriteria("alert.model.EstudiantesMateriasHorarios")
-					.add(Example.create(instance)).list();
+					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;
@@ -96,19 +98,21 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByHoraFin(Object horaFin) {
+	public List<EstudiantesMateriasHorarios> findByHoraFin(Object horaFin) {
 		return findByProperty(HORA_FIN, horaFin);
 	}
 
-	public List findByHoraInicio(Object horaInicio) {
+	public List<EstudiantesMateriasHorarios> findByHoraInicio(Object horaInicio) {
 		return findByProperty(HORA_INICIO, horaInicio);
 	}
 
-	public List findByIdDiaSemana(Object idDiaSemana) {
+	public List<EstudiantesMateriasHorarios> findByIdDiaSemana(
+			Object idDiaSemana) {
 		return findByProperty(ID_DIA_SEMANA, idDiaSemana);
 	}
 
-	public List findByIdEstudiante(Object idEstudiante) {
+	public List<EstudiantesMateriasHorarios> findByIdEstudiante(
+			Object idEstudiante) {
 		return findByProperty(ID_ESTUDIANTE, idEstudiante);
 	}
 

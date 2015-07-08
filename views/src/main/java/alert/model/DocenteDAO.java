@@ -2,10 +2,11 @@ package alert.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
-import org.hibernate.criterion.Example;
+
+import static org.hibernate.criterion.Example.create;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,7 @@ import connection.BaseHibernateDAOAlert;
  * @see alert.model.Docente
  * @author MyEclipse Persistence Tools
  */
-@Entity public class DocenteDAO extends BaseHibernateDAOAlert {
+public class DocenteDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory.getLogger(DocenteDAO.class);
 	// property constants
 	public static final String APELLIDOS = "apellidos";
@@ -69,11 +70,12 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByExample(Docente instance) {
+	public List<Docente> findByExample(Docente instance) {
 		log.debug("finding Docente instance by example");
 		try {
-			List results = getSession().createCriteria("alert.model.Docente")
-					.add(Example.create(instance)).list();
+			List<Docente> results = (List<Docente>) getSession()
+					.createCriteria("alert.model.Docente")
+					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;
@@ -98,39 +100,39 @@ import connection.BaseHibernateDAOAlert;
 		}
 	}
 
-	public List findByApellidos(Object apellidos) {
+	public List<Docente> findByApellidos(Object apellidos) {
 		return findByProperty(APELLIDOS, apellidos);
 	}
 
-	public List findByCelular(Object celular) {
+	public List<Docente> findByCelular(Object celular) {
 		return findByProperty(CELULAR, celular);
 	}
 
-	public List findByCodigo(Object codigo) {
+	public List<Docente> findByCodigo(Object codigo) {
 		return findByProperty(CODIGO, codigo);
 	}
 
-	public List findByCorreo(Object correo) {
+	public List<Docente> findByCorreo(Object correo) {
 		return findByProperty(CORREO, correo);
 	}
 
-	public List findByCorreoAlternativo(Object correoAlternativo) {
+	public List<Docente> findByCorreoAlternativo(Object correoAlternativo) {
 		return findByProperty(CORREO_ALTERNATIVO, correoAlternativo);
 	}
 
-	public List findByDireccion(Object direccion) {
+	public List<Docente> findByDireccion(Object direccion) {
 		return findByProperty(DIRECCION, direccion);
 	}
 
-	public List findByDocumento(Object documento) {
+	public List<Docente> findByDocumento(Object documento) {
 		return findByProperty(DOCUMENTO, documento);
 	}
 
-	public List findByNombres(Object nombres) {
+	public List<Docente> findByNombres(Object nombres) {
 		return findByProperty(NOMBRES, nombres);
 	}
 
-	public List findByTelefono(Object telefono) {
+	public List<Docente> findByTelefono(Object telefono) {
 		return findByProperty(TELEFONO, telefono);
 	}
 
