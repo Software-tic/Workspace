@@ -26,12 +26,10 @@ public class NotasPeriodoId implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public NotasPeriodoId(String perCorte, String sdoCorte, String terCorte,
-			String NFinal) {
-		this.perCorte = perCorte;
-		this.sdoCorte = sdoCorte;
-		this.terCorte = terCorte;
-		this.NFinal = NFinal;
+	public NotasPeriodoId(Long idEstudiante, Long idMateria, String periodo) {
+		this.idEstudiante = idEstudiante;
+		this.idMateria = idMateria;
+		this.periodo = periodo;
 	}
 
 	/** full constructor */
@@ -48,7 +46,7 @@ public class NotasPeriodoId implements java.io.Serializable {
 
 	// Property accessors
 
-	@Column(name = "id_estudiante")
+	@Column(name = "id_estudiante", nullable = false)
 	public Long getIdEstudiante() {
 		return this.idEstudiante;
 	}
@@ -57,7 +55,7 @@ public class NotasPeriodoId implements java.io.Serializable {
 		this.idEstudiante = idEstudiante;
 	}
 
-	@Column(name = "id_materia")
+	@Column(name = "id_materia", nullable = false)
 	public Long getIdMateria() {
 		return this.idMateria;
 	}
@@ -66,7 +64,7 @@ public class NotasPeriodoId implements java.io.Serializable {
 		this.idMateria = idMateria;
 	}
 
-	@Column(name = "per_corte", nullable = false, length = 5)
+	@Column(name = "per_corte", length = 5)
 	public String getPerCorte() {
 		return this.perCorte;
 	}
@@ -75,7 +73,7 @@ public class NotasPeriodoId implements java.io.Serializable {
 		this.perCorte = perCorte;
 	}
 
-	@Column(name = "sdo_corte", nullable = false, length = 5)
+	@Column(name = "sdo_corte", length = 5)
 	public String getSdoCorte() {
 		return this.sdoCorte;
 	}
@@ -84,7 +82,7 @@ public class NotasPeriodoId implements java.io.Serializable {
 		this.sdoCorte = sdoCorte;
 	}
 
-	@Column(name = "ter_corte", nullable = false, length = 5)
+	@Column(name = "ter_corte", length = 5)
 	public String getTerCorte() {
 		return this.terCorte;
 	}
@@ -93,7 +91,7 @@ public class NotasPeriodoId implements java.io.Serializable {
 		this.terCorte = terCorte;
 	}
 
-	@Column(name = "n_final", nullable = false, length = 5)
+	@Column(name = "n_final", length = 5)
 	public String getNFinal() {
 		return this.NFinal;
 	}
@@ -102,7 +100,7 @@ public class NotasPeriodoId implements java.io.Serializable {
 		this.NFinal = NFinal;
 	}
 
-	@Column(name = "periodo", length = 10)
+	@Column(name = "periodo", nullable = false, length = 10)
 	public String getPeriodo() {
 		return this.periodo;
 	}

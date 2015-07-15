@@ -28,40 +28,6 @@ import connection.BaseHibernateDAOSAC;
 	// property constants
 	public static final String FACULTAD = "facultad";
 
-	public void save(FacultadesSAC transientInstance) {
-		log.debug("saving Facultades instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
-	}
-
-	public void delete(FacultadesSAC persistentInstance) {
-		log.debug("deleting FacultadesSAC instance");
-		try {
-			getSession().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
-	}
-
-	public FacultadesSAC findById(java.lang.Long id) {
-		log.debug("getting FacultadesSAC instance with id: " + id);
-		try {
-			FacultadesSAC instance = (FacultadesSAC) getSession().get(
-					"sac.model.FacultadesSAC", id);
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
-
 	public List findByExample(FacultadesSAC instance) {
 		log.debug("finding FacultadesSAC instance by example");
 		try {

@@ -1,8 +1,10 @@
 package alert.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -14,9 +16,7 @@ public class EstudiantesMateriasGrupo implements java.io.Serializable {
 
 	// Fields
 
-	private String idMateria;
-	private Long idEstudiante;
-	private Long idGrupo;
+	private EstudiantesMateriasGrupoId id;
 
 	// Constructors
 
@@ -24,46 +24,23 @@ public class EstudiantesMateriasGrupo implements java.io.Serializable {
 	public EstudiantesMateriasGrupo() {
 	}
 
-	/** minimal constructor */
-	public EstudiantesMateriasGrupo(String idMateria) {
-		this.idMateria = idMateria;
-	}
-
 	/** full constructor */
-	public EstudiantesMateriasGrupo(String idMateria, Long idEstudiante,
-			Long idGrupo) {
-		this.idMateria = idMateria;
-		this.idEstudiante = idEstudiante;
-		this.idGrupo = idGrupo;
+	public EstudiantesMateriasGrupo(EstudiantesMateriasGrupoId id) {
+		this.id = id;
 	}
 
 	// Property accessors
-	@Id
-	@Column(name = "id_materia", unique = true, nullable = false, length = 5)
-	public String getIdMateria() {
-		return this.idMateria;
+	@EmbeddedId
+	@AttributeOverrides({
+			@AttributeOverride(name = "idMateria", column = @Column(name = "id_materia", nullable = false, length = 5)),
+			@AttributeOverride(name = "idEstudiante", column = @Column(name = "id_estudiante")),
+			@AttributeOverride(name = "idGrupo", column = @Column(name = "id_grupo")) })
+	public EstudiantesMateriasGrupoId getId() {
+		return this.id;
 	}
 
-	public void setIdMateria(String idMateria) {
-		this.idMateria = idMateria;
-	}
-
-	@Column(name = "id_estudiante")
-	public Long getIdEstudiante() {
-		return this.idEstudiante;
-	}
-
-	public void setIdEstudiante(Long idEstudiante) {
-		this.idEstudiante = idEstudiante;
-	}
-
-	@Column(name = "id_grupo")
-	public Long getIdGrupo() {
-		return this.idGrupo;
-	}
-
-	public void setIdGrupo(Long idGrupo) {
-		this.idGrupo = idGrupo;
+	public void setId(EstudiantesMateriasGrupoId id) {
+		this.id = id;
 	}
 
 }

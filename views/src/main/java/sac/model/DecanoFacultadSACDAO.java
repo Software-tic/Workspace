@@ -30,40 +30,6 @@ import connection.BaseHibernateDAOSAC;
 	public static final String MAIL = "mail";
 	public static final String NOM_DECANO = "nomDecano";
 
-	public void save(DecanoFacultadSAC transientInstance) {
-		log.debug("saving DecanoFacultadSAC instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
-	}
-
-	public void delete(DecanoFacultadSAC persistentInstance) {
-		log.debug("deleting DecanoFacultadSAC instance");
-		try {
-			getSession().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
-	}
-
-	public DecanoFacultadSAC findById(java.lang.Long id) {
-		log.debug("getting DecanoFacultadSAC instance with id: " + id);
-		try {
-			DecanoFacultadSAC instance = (DecanoFacultadSAC) getSession().get(
-					"sac.model.DecanoFacultadSAC", id);
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
-
 	public List findByExample(DecanoFacultadSAC instance) {
 		log.debug("finding DecanoFacultadSAC instance by example");
 		try {

@@ -29,40 +29,6 @@ import connection.BaseHibernateDAOSAC;
 	public static final String COD_ALUMNO = "codAlumno";
 	public static final String ID_CARRERA = "idCarrera";
 
-	public void save(CarrerasEstudiantesSAC transientInstance) {
-		log.debug("saving CarrerasEstudiantesSAC instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
-	}
-
-	public void delete(CarrerasEstudiantesSAC persistentInstance) {
-		log.debug("deleting CarrerasEstudiantesSAC instance");
-		try {
-			getSession().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
-	}
-
-	public CarrerasEstudiantesSAC findById(java.lang.Long id) {
-		log.debug("getting CarrerasEstudiantesSAC instance with id: " + id);
-		try {
-			CarrerasEstudiantesSAC instance = (CarrerasEstudiantesSAC) getSession()
-					.get("sac.model.CarrerasEstudiantesSAC", id);
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
-
 	public List findByExample(CarrerasEstudiantesSAC instance) {
 		log.debug("finding CarrerasEstudiantesSAC instance by example");
 		try {

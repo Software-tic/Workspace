@@ -26,9 +26,8 @@ import connection.BaseHibernateDAOAlert;
 public class CarrerasEstudiantesDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(CarrerasEstudiantesDAO.class);
+
 	// property constants
-	public static final String COD_ALUMNO = "codAlumno";
-	public static final String ID_CARRERA = "idCarrera";
 
 	public void save(CarrerasEstudiantes transientInstance) {
 		log.debug("saving CarrerasEstudiantes instance");
@@ -52,7 +51,7 @@ public class CarrerasEstudiantesDAO extends BaseHibernateDAOAlert {
 		}
 	}
 
-	public CarrerasEstudiantes findById(java.lang.Long id) {
+	public CarrerasEstudiantes findById(alert.model.CarrerasEstudiantesId id) {
 		log.debug("getting CarrerasEstudiantes instance with id: " + id);
 		try {
 			CarrerasEstudiantes instance = (CarrerasEstudiantes) getSession()
@@ -92,14 +91,6 @@ public class CarrerasEstudiantesDAO extends BaseHibernateDAOAlert {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List<CarrerasEstudiantes> findByCodAlumno(Object codAlumno) {
-		return findByProperty(COD_ALUMNO, codAlumno);
-	}
-
-	public List<CarrerasEstudiantes> findByIdCarrera(Object idCarrera) {
-		return findByProperty(ID_CARRERA, idCarrera);
 	}
 
 	public List findAll() {

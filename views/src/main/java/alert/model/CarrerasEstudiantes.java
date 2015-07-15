@@ -1,8 +1,10 @@
 package alert.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -14,9 +16,7 @@ public class CarrerasEstudiantes implements java.io.Serializable {
 
 	// Fields
 
-	private Long idEstudiante;
-	private String codAlumno;
-	private String idCarrera;
+	private CarrerasEstudiantesId id;
 
 	// Constructors
 
@@ -24,46 +24,23 @@ public class CarrerasEstudiantes implements java.io.Serializable {
 	public CarrerasEstudiantes() {
 	}
 
-	/** minimal constructor */
-	public CarrerasEstudiantes(Long idEstudiante) {
-		this.idEstudiante = idEstudiante;
-	}
-
 	/** full constructor */
-	public CarrerasEstudiantes(Long idEstudiante, String codAlumno,
-			String idCarrera) {
-		this.idEstudiante = idEstudiante;
-		this.codAlumno = codAlumno;
-		this.idCarrera = idCarrera;
+	public CarrerasEstudiantes(CarrerasEstudiantesId id) {
+		this.id = id;
 	}
 
 	// Property accessors
-	@Id
-	@Column(name = "id_estudiante", unique = true, nullable = false)
-	public Long getIdEstudiante() {
-		return this.idEstudiante;
+	@EmbeddedId
+	@AttributeOverrides({
+			@AttributeOverride(name = "idEstudiante", column = @Column(name = "id_estudiante", nullable = false)),
+			@AttributeOverride(name = "codAlumno", column = @Column(name = "cod_alumno")),
+			@AttributeOverride(name = "idCarrera", column = @Column(name = "id_carrera")) })
+	public CarrerasEstudiantesId getId() {
+		return this.id;
 	}
 
-	public void setIdEstudiante(Long idEstudiante) {
-		this.idEstudiante = idEstudiante;
-	}
-
-	@Column(name = "cod_alumno")
-	public String getCodAlumno() {
-		return this.codAlumno;
-	}
-
-	public void setCodAlumno(String codAlumno) {
-		this.codAlumno = codAlumno;
-	}
-
-	@Column(name = "id_carrera")
-	public String getIdCarrera() {
-		return this.idCarrera;
-	}
-
-	public void setIdCarrera(String idCarrera) {
-		this.idCarrera = idCarrera;
+	public void setId(CarrerasEstudiantesId id) {
+		this.id = id;
 	}
 
 }

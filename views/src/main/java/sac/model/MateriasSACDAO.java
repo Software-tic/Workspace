@@ -34,40 +34,6 @@ import connection.BaseHibernateDAOSAC;
 	public static final String NOMBRE = "nombre";
 	public static final String SEMESTRE = "semestre";
 
-	public void save(MateriasSAC transientInstance) {
-		log.debug("saving MateriasSAC instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
-	}
-
-	public void delete(MateriasSAC persistentInstance) {
-		log.debug("deleting MateriasSAC instance");
-		try {
-			getSession().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
-	}
-
-	public MateriasSAC findById(java.lang.String id) {
-		log.debug("getting MateriasSAC instance with id: " + id);
-		try {
-			MateriasSAC instance = (MateriasSAC) getSession().get(
-					"sac.model.MateriasSAC", id);
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
-
 	public List findByExample(MateriasSAC instance) {
 		log.debug("finding MateriasSAC instance by example");
 		try {

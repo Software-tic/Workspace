@@ -28,40 +28,6 @@ import connection.BaseHibernateDAOSAC;
 	// property constants
 	public static final String ID_GRUPO = "idGrupo";
 
-	public void save(MateriasGrupoSAC transientInstance) {
-		log.debug("saving MateriasGrupoSAC instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
-	}
-
-	public void delete(MateriasGrupoSAC persistentInstance) {
-		log.debug("deleting MateriasGrupoSAC instance");
-		try {
-			getSession().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
-	}
-
-	public MateriasGrupoSAC findById(java.lang.String id) {
-		log.debug("getting MateriasGrupoSAC instance with id: " + id);
-		try {
-			MateriasGrupoSAC instance = (MateriasGrupoSAC) getSession().get(
-					"sac.model.MateriasGrupoSAC", id);
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
-
 	public List findByExample(MateriasGrupoSAC instance) {
 		log.debug("finding MateriasGrupoSAC instance by example");
 		try {

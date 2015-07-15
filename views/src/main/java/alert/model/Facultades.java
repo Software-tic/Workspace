@@ -1,8 +1,10 @@
 package alert.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -14,8 +16,7 @@ public class Facultades implements java.io.Serializable {
 
 	// Fields
 
-	private Long identificador;
-	private String facultad;
+	private FacultadesId id;
 
 	// Constructors
 
@@ -23,35 +24,22 @@ public class Facultades implements java.io.Serializable {
 	public Facultades() {
 	}
 
-	/** minimal constructor */
-	public Facultades(Long identificador) {
-		this.identificador = identificador;
-	}
-
 	/** full constructor */
-	public Facultades(Long identificador, String facultad) {
-		this.identificador = identificador;
-		this.facultad = facultad;
+	public Facultades(FacultadesId id) {
+		this.id = id;
 	}
 
 	// Property accessors
-	@Id
-	@Column(name = "identificador", unique = true, nullable = false)
-	public Long getIdentificador() {
-		return this.identificador;
+	@EmbeddedId
+	@AttributeOverrides({
+			@AttributeOverride(name = "identificador", column = @Column(name = "identificador", nullable = false)),
+			@AttributeOverride(name = "facultad", column = @Column(name = "facultad")) })
+	public FacultadesId getId() {
+		return this.id;
 	}
 
-	public void setIdentificador(Long identificador) {
-		this.identificador = identificador;
-	}
-
-	@Column(name = "facultad")
-	public String getFacultad() {
-		return this.facultad;
-	}
-
-	public void setFacultad(String facultad) {
-		this.facultad = facultad;
+	public void setId(FacultadesId id) {
+		this.id = id;
 	}
 
 }

@@ -9,7 +9,9 @@
 	<property name="dialect">
 		org.hibernate.dialect.Oracle9Dialect
 	</property>
-	<property name="connection.url">jdbc:oracle:thin:@181.48.62.67:1521:SACTEST</property>
+	<property name="connection.url">
+		jdbc:oracle:thin:@181.48.62.67:1521:SACTEST
+	</property>
 	<property name="connection.username">ZYOS</property>
 	<property name="connection.password">al3rt4ust4</property>
 	<property name="connection.driver_class">
@@ -43,6 +45,7 @@
 	<mapping resource="sac/model/CarrerasDocentesFacultades.hbm.xml" />
 	<mapping resource="sac/model/CarrerasEstudiantes.hbm.xml" />
 	<mapping resource="sac/model/DecanoFacultad.hbm.xml" />
+	<mapping resource="sac/model/NotasPeriodo.hbm.xml" />
 
 </session-factory>
 

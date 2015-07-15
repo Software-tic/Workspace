@@ -1,8 +1,10 @@
 package alert.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -14,9 +16,7 @@ public class CarrerasDocentesFacultades implements java.io.Serializable {
 
 	// Fields
 
-	private Long idDocente;
-	private String idCarrera;
-	private Long idFacultad;
+	private CarrerasDocentesFacultadesId id;
 
 	// Constructors
 
@@ -24,46 +24,23 @@ public class CarrerasDocentesFacultades implements java.io.Serializable {
 	public CarrerasDocentesFacultades() {
 	}
 
-	/** minimal constructor */
-	public CarrerasDocentesFacultades(Long idDocente) {
-		this.idDocente = idDocente;
-	}
-
 	/** full constructor */
-	public CarrerasDocentesFacultades(Long idDocente, String idCarrera,
-			Long idFacultad) {
-		this.idDocente = idDocente;
-		this.idCarrera = idCarrera;
-		this.idFacultad = idFacultad;
+	public CarrerasDocentesFacultades(CarrerasDocentesFacultadesId id) {
+		this.id = id;
 	}
 
 	// Property accessors
-	@Id
-	@Column(name = "id_docente", unique = true, nullable = false)
-	public Long getIdDocente() {
-		return this.idDocente;
+	@EmbeddedId
+	@AttributeOverrides({
+			@AttributeOverride(name = "idDocente", column = @Column(name = "id_docente", nullable = false)),
+			@AttributeOverride(name = "idCarrera", column = @Column(name = "id_carrera")),
+			@AttributeOverride(name = "idFacultad", column = @Column(name = "id_facultad")) })
+	public CarrerasDocentesFacultadesId getId() {
+		return this.id;
 	}
 
-	public void setIdDocente(Long idDocente) {
-		this.idDocente = idDocente;
-	}
-
-	@Column(name = "id_carrera")
-	public String getIdCarrera() {
-		return this.idCarrera;
-	}
-
-	public void setIdCarrera(String idCarrera) {
-		this.idCarrera = idCarrera;
-	}
-
-	@Column(name = "id_facultad")
-	public Long getIdFacultad() {
-		return this.idFacultad;
-	}
-
-	public void setIdFacultad(Long idFacultad) {
-		this.idFacultad = idFacultad;
+	public void setId(CarrerasDocentesFacultadesId id) {
+		this.id = id;
 	}
 
 }

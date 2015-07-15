@@ -1,8 +1,10 @@
 package alert.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -14,10 +16,7 @@ public class DecanoFacultad implements java.io.Serializable {
 
 	// Fields
 
-	private Long idDecano;
-	private Long idFacultad;
-	private String mail;
-	private String nomDecano;
+	private DecanoFacultadId id;
 
 	// Constructors
 
@@ -25,56 +24,24 @@ public class DecanoFacultad implements java.io.Serializable {
 	public DecanoFacultad() {
 	}
 
-	/** minimal constructor */
-	public DecanoFacultad(Long idDecano) {
-		this.idDecano = idDecano;
-	}
-
 	/** full constructor */
-	public DecanoFacultad(Long idDecano, Long idFacultad, String mail,
-			String nomDecano) {
-		this.idDecano = idDecano;
-		this.idFacultad = idFacultad;
-		this.mail = mail;
-		this.nomDecano = nomDecano;
+	public DecanoFacultad(DecanoFacultadId id) {
+		this.id = id;
 	}
 
 	// Property accessors
-	@Id
-	@Column(name = "id_decano", unique = true, nullable = false)
-	public Long getIdDecano() {
-		return this.idDecano;
+	@EmbeddedId
+	@AttributeOverrides({
+			@AttributeOverride(name = "idDecano", column = @Column(name = "id_decano", nullable = false)),
+			@AttributeOverride(name = "idFacultad", column = @Column(name = "id_facultad")),
+			@AttributeOverride(name = "mail", column = @Column(name = "mail")),
+			@AttributeOverride(name = "nomDecano", column = @Column(name = "nom_decano")) })
+	public DecanoFacultadId getId() {
+		return this.id;
 	}
 
-	public void setIdDecano(Long idDecano) {
-		this.idDecano = idDecano;
-	}
-
-	@Column(name = "id_facultad")
-	public Long getIdFacultad() {
-		return this.idFacultad;
-	}
-
-	public void setIdFacultad(Long idFacultad) {
-		this.idFacultad = idFacultad;
-	}
-
-	@Column(name = "mail")
-	public String getMail() {
-		return this.mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-
-	@Column(name = "nom_decano")
-	public String getNomDecano() {
-		return this.nomDecano;
-	}
-
-	public void setNomDecano(String nomDecano) {
-		this.nomDecano = nomDecano;
+	public void setId(DecanoFacultadId id) {
+		this.id = id;
 	}
 
 }

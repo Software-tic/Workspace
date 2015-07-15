@@ -1,8 +1,10 @@
 package alert.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -14,8 +16,7 @@ public class MateriasGrupo implements java.io.Serializable {
 
 	// Fields
 
-	private String idMateria;
-	private Long idGrupo;
+	private MateriasGrupoId id;
 
 	// Constructors
 
@@ -23,35 +24,22 @@ public class MateriasGrupo implements java.io.Serializable {
 	public MateriasGrupo() {
 	}
 
-	/** minimal constructor */
-	public MateriasGrupo(String idMateria) {
-		this.idMateria = idMateria;
-	}
-
 	/** full constructor */
-	public MateriasGrupo(String idMateria, Long idGrupo) {
-		this.idMateria = idMateria;
-		this.idGrupo = idGrupo;
+	public MateriasGrupo(MateriasGrupoId id) {
+		this.id = id;
 	}
 
 	// Property accessors
-	@Id
-	@Column(name = "id_materia", unique = true, nullable = false, length = 5)
-	public String getIdMateria() {
-		return this.idMateria;
+	@EmbeddedId
+	@AttributeOverrides({
+			@AttributeOverride(name = "idMateria", column = @Column(name = "id_materia", nullable = false, length = 5)),
+			@AttributeOverride(name = "idGrupo", column = @Column(name = "id_grupo")) })
+	public MateriasGrupoId getId() {
+		return this.id;
 	}
 
-	public void setIdMateria(String idMateria) {
-		this.idMateria = idMateria;
-	}
-
-	@Column(name = "id_grupo")
-	public Long getIdGrupo() {
-		return this.idGrupo;
-	}
-
-	public void setIdGrupo(Long idGrupo) {
-		this.idGrupo = idGrupo;
+	public void setId(MateriasGrupoId id) {
+		this.id = id;
 	}
 
 }

@@ -29,39 +29,6 @@ import connection.BaseHibernateDAOSAC;
 	public static final String FACULTAD = "facultad";
 	public static final String NOMBRE = "nombre";
 
-	public void save(CarrerasSAC transientInstance) {
-		log.debug("saving CarrerasSAC instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
-	}
-
-	public void delete(CarrerasSAC persistentInstance) {
-		log.debug("deleting CarrerasSAC instance");
-		try {
-			getSession().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
-	}
-
-	public CarrerasSAC findById(java.lang.String id) {
-		log.debug("getting CarrerasSAC instance with id: " + id);
-		try {
-			CarrerasSAC instance = (CarrerasSAC) getSession().get("sac.model.CarrerasSAC", id);
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
-
 	public List findByExample(CarrerasSAC instance) {
 		log.debug("finding CarrerasSAC instance by example");
 		try {

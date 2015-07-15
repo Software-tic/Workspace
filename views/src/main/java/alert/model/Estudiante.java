@@ -1,8 +1,10 @@
 package alert.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -14,14 +16,7 @@ public class Estudiante implements java.io.Serializable {
 
 	// Fields
 
-	private Long id;
-	private String apellidos;
-	private String celular;
-	private String correoAlternativo;
-	private String direccion;
-	private String documento;
-	private String nombres;
-	private String telefono;
+	private EstudianteId id;
 
 	// Constructors
 
@@ -29,97 +24,28 @@ public class Estudiante implements java.io.Serializable {
 	public Estudiante() {
 	}
 
-	/** minimal constructor */
-	public Estudiante(Long id) {
-		this.id = id;
-	}
-
 	/** full constructor */
-	public Estudiante(Long id, String apellidos, String celular,
-			String correoAlternativo, String direccion, String documento,
-			String nombres, String telefono) {
+	public Estudiante(EstudianteId id) {
 		this.id = id;
-		this.apellidos = apellidos;
-		this.celular = celular;
-		this.correoAlternativo = correoAlternativo;
-		this.direccion = direccion;
-		this.documento = documento;
-		this.nombres = nombres;
-		this.telefono = telefono;
 	}
 
 	// Property accessors
-	@Id
-	@Column(name = "id", unique = true, nullable = false)
-	public Long getId() {
+	@EmbeddedId
+	@AttributeOverrides({
+			@AttributeOverride(name = "id", column = @Column(name = "id", nullable = false)),
+			@AttributeOverride(name = "apellidos", column = @Column(name = "apellidos", length = 61)),
+			@AttributeOverride(name = "celular", column = @Column(name = "celular", length = 20)),
+			@AttributeOverride(name = "correoAlternativo", column = @Column(name = "correo_alternativo", length = 100)),
+			@AttributeOverride(name = "direccion", column = @Column(name = "direccion", length = 60)),
+			@AttributeOverride(name = "documento", column = @Column(name = "documento", length = 12)),
+			@AttributeOverride(name = "nombres", column = @Column(name = "nombres", length = 101)),
+			@AttributeOverride(name = "telefono", column = @Column(name = "telefono", length = 30)) })
+	public EstudianteId getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public void setId(EstudianteId id) {
 		this.id = id;
-	}
-
-	@Column(name = "apellidos", length = 61)
-	public String getApellidos() {
-		return this.apellidos;
-	}
-
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
-
-	@Column(name = "celular", length = 20)
-	public String getCelular() {
-		return this.celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
-
-	@Column(name = "correo_alternativo", length = 100)
-	public String getCorreoAlternativo() {
-		return this.correoAlternativo;
-	}
-
-	public void setCorreoAlternativo(String correoAlternativo) {
-		this.correoAlternativo = correoAlternativo;
-	}
-
-	@Column(name = "direccion", length = 60)
-	public String getDireccion() {
-		return this.direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	@Column(name = "documento", length = 12)
-	public String getDocumento() {
-		return this.documento;
-	}
-
-	public void setDocumento(String documento) {
-		this.documento = documento;
-	}
-
-	@Column(name = "nombres", length = 101)
-	public String getNombres() {
-		return this.nombres;
-	}
-
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
-	}
-
-	@Column(name = "telefono", length = 30)
-	public String getTelefono() {
-		return this.telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
 	}
 
 }

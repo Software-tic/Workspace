@@ -1,8 +1,10 @@
 package alert.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -14,9 +16,7 @@ public class Horarios implements java.io.Serializable {
 
 	// Fields
 
-	private String materia;
-	private String diaDeClase;
-	private Long grupo;
+	private HorariosId id;
 
 	// Constructors
 
@@ -24,45 +24,23 @@ public class Horarios implements java.io.Serializable {
 	public Horarios() {
 	}
 
-	/** minimal constructor */
-	public Horarios(String materia) {
-		this.materia = materia;
-	}
-
 	/** full constructor */
-	public Horarios(String materia, String diaDeClase, Long grupo) {
-		this.materia = materia;
-		this.diaDeClase = diaDeClase;
-		this.grupo = grupo;
+	public Horarios(HorariosId id) {
+		this.id = id;
 	}
 
 	// Property accessors
-	@Id
-	@Column(name = "materia", unique = true, nullable = false, length = 5)
-	public String getMateria() {
-		return this.materia;
+	@EmbeddedId
+	@AttributeOverrides({
+			@AttributeOverride(name = "materia", column = @Column(name = "materia", nullable = false, length = 5)),
+			@AttributeOverride(name = "diaDeClase", column = @Column(name = "dia_de_clase", length = 9)),
+			@AttributeOverride(name = "grupo", column = @Column(name = "grupo")) })
+	public HorariosId getId() {
+		return this.id;
 	}
 
-	public void setMateria(String materia) {
-		this.materia = materia;
-	}
-
-	@Column(name = "dia_de_clase", length = 9)
-	public String getDiaDeClase() {
-		return this.diaDeClase;
-	}
-
-	public void setDiaDeClase(String diaDeClase) {
-		this.diaDeClase = diaDeClase;
-	}
-
-	@Column(name = "grupo")
-	public Long getGrupo() {
-		return this.grupo;
-	}
-
-	public void setGrupo(Long grupo) {
-		this.grupo = grupo;
+	public void setId(HorariosId id) {
+		this.id = id;
 	}
 
 }

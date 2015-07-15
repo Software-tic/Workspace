@@ -26,8 +26,8 @@ import connection.BaseHibernateDAOAlert;
 public class MateriasEstudiantesDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(MateriasEstudiantesDAO.class);
+
 	// property constants
-	public static final String ID_ESTUDIANTE = "idEstudiante";
 
 	public void save(MateriasEstudiantes transientInstance) {
 		log.debug("saving MateriasEstudiantes instance");
@@ -51,7 +51,7 @@ public class MateriasEstudiantesDAO extends BaseHibernateDAOAlert {
 		}
 	}
 
-	public MateriasEstudiantes findById(java.lang.String id) {
+	public MateriasEstudiantes findById(alert.model.MateriasEstudiantesId id) {
 		log.debug("getting MateriasEstudiantes instance with id: " + id);
 		try {
 			MateriasEstudiantes instance = (MateriasEstudiantes) getSession()
@@ -91,10 +91,6 @@ public class MateriasEstudiantesDAO extends BaseHibernateDAOAlert {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List<MateriasEstudiantes> findByIdEstudiante(Object idEstudiante) {
-		return findByProperty(ID_ESTUDIANTE, idEstudiante);
 	}
 
 	public List findAll() {

@@ -26,12 +26,8 @@ import connection.BaseHibernateDAOAlert;
 public class MateriasDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(MateriasDAO.class);
+
 	// property constants
-	public static final String FECHA_FIN = "fechaFin";
-	public static final String FECHA_INICIO = "fechaInicio";
-	public static final String INT_HORARIA = "intHoraria";
-	public static final String NOMBRE = "nombre";
-	public static final String SEMESTRE = "semestre";
 
 	public void save(Materias transientInstance) {
 		log.debug("saving Materias instance");
@@ -55,7 +51,7 @@ public class MateriasDAO extends BaseHibernateDAOAlert {
 		}
 	}
 
-	public Materias findById(java.lang.String id) {
+	public Materias findById(alert.model.MateriasId id) {
 		log.debug("getting Materias instance with id: " + id);
 		try {
 			Materias instance = (Materias) getSession().get(
@@ -95,26 +91,6 @@ public class MateriasDAO extends BaseHibernateDAOAlert {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List<Materias> findByFechaFin(Object fechaFin) {
-		return findByProperty(FECHA_FIN, fechaFin);
-	}
-
-	public List<Materias> findByFechaInicio(Object fechaInicio) {
-		return findByProperty(FECHA_INICIO, fechaInicio);
-	}
-
-	public List<Materias> findByIntHoraria(Object intHoraria) {
-		return findByProperty(INT_HORARIA, intHoraria);
-	}
-
-	public List<Materias> findByNombre(Object nombre) {
-		return findByProperty(NOMBRE, nombre);
-	}
-
-	public List<Materias> findBySemestre(Object semestre) {
-		return findByProperty(SEMESTRE, semestre);
 	}
 
 	public List findAll() {

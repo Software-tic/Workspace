@@ -28,39 +28,6 @@ import connection.BaseHibernateDAOSAC;
 	public static final String AULA = "aula";
 	public static final String NOMBRE_GRUPO = "nombreGrupo";
 
-	public void save(GrupoSAC transientInstance) {
-		log.debug("saving GrupoSAC instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
-	}
-
-	public void delete(GrupoSAC persistentInstance) {
-		log.debug("deleting GrupoSAC instance");
-		try {
-			getSession().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
-	}
-
-	public GrupoSAC findById(java.lang.Long id) {
-		log.debug("getting GrupoSAC instance with id: " + id);
-		try {
-			GrupoSAC instance = (GrupoSAC) getSession().get("sac.model.GrupoSAC", id);
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
-
 	public List findByExample(GrupoSAC instance) {
 		log.debug("finding GrupoSAC instance by example");
 		try {

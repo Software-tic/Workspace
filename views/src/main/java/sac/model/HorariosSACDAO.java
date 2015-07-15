@@ -29,40 +29,6 @@ import connection.BaseHibernateDAOSAC;
 	public static final String DIA_DE_CLASE = "diaDeClase";
 	public static final String GRUPO = "grupo";
 
-	public void save(HorariosSAC transientInstance) {
-		log.debug("saving HorariosSAC instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
-	}
-
-	public void delete(HorariosSAC persistentInstance) {
-		log.debug("deleting HorariosSAC instance");
-		try {
-			getSession().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
-	}
-
-	public HorariosSAC findById(java.lang.String id) {
-		log.debug("getting HorariosSAC instance with id: " + id);
-		try {
-			HorariosSAC instance = (HorariosSAC) getSession().get(
-					"sac.model.HorariosSAC", id);
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
-
 	public List findByExample(HorariosSAC instance) {
 		log.debug("finding HorariosSAC instance by example");
 		try {

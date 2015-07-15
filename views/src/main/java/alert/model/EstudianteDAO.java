@@ -26,14 +26,8 @@ import connection.BaseHibernateDAOAlert;
 public class EstudianteDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(EstudianteDAO.class);
+
 	// property constants
-	public static final String APELLIDOS = "apellidos";
-	public static final String CELULAR = "celular";
-	public static final String CORREO_ALTERNATIVO = "correoAlternativo";
-	public static final String DIRECCION = "direccion";
-	public static final String DOCUMENTO = "documento";
-	public static final String NOMBRES = "nombres";
-	public static final String TELEFONO = "telefono";
 
 	public void save(Estudiante transientInstance) {
 		log.debug("saving Estudiante instance");
@@ -57,7 +51,7 @@ public class EstudianteDAO extends BaseHibernateDAOAlert {
 		}
 	}
 
-	public Estudiante findById(java.lang.Long id) {
+	public Estudiante findById(alert.model.EstudianteId id) {
 		log.debug("getting Estudiante instance with id: " + id);
 		try {
 			Estudiante instance = (Estudiante) getSession().get(
@@ -97,34 +91,6 @@ public class EstudianteDAO extends BaseHibernateDAOAlert {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List<Estudiante> findByApellidos(Object apellidos) {
-		return findByProperty(APELLIDOS, apellidos);
-	}
-
-	public List<Estudiante> findByCelular(Object celular) {
-		return findByProperty(CELULAR, celular);
-	}
-
-	public List<Estudiante> findByCorreoAlternativo(Object correoAlternativo) {
-		return findByProperty(CORREO_ALTERNATIVO, correoAlternativo);
-	}
-
-	public List<Estudiante> findByDireccion(Object direccion) {
-		return findByProperty(DIRECCION, direccion);
-	}
-
-	public List<Estudiante> findByDocumento(Object documento) {
-		return findByProperty(DOCUMENTO, documento);
-	}
-
-	public List<Estudiante> findByNombres(Object nombres) {
-		return findByProperty(NOMBRES, nombres);
-	}
-
-	public List<Estudiante> findByTelefono(Object telefono) {
-		return findByProperty(TELEFONO, telefono);
 	}
 
 	public List findAll() {

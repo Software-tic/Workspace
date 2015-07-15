@@ -25,16 +25,8 @@ import connection.BaseHibernateDAOAlert;
  */
 public class DocenteDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory.getLogger(DocenteDAO.class);
+
 	// property constants
-	public static final String APELLIDOS = "apellidos";
-	public static final String CELULAR = "celular";
-	public static final String CODIGO = "codigo";
-	public static final String CORREO = "correo";
-	public static final String CORREO_ALTERNATIVO = "correoAlternativo";
-	public static final String DIRECCION = "direccion";
-	public static final String DOCUMENTO = "documento";
-	public static final String NOMBRES = "nombres";
-	public static final String TELEFONO = "telefono";
 
 	public void save(Docente transientInstance) {
 		log.debug("saving Docente instance");
@@ -58,7 +50,7 @@ public class DocenteDAO extends BaseHibernateDAOAlert {
 		}
 	}
 
-	public Docente findById(java.lang.Long id) {
+	public Docente findById(alert.model.DocenteId id) {
 		log.debug("getting Docente instance with id: " + id);
 		try {
 			Docente instance = (Docente) getSession().get(
@@ -98,42 +90,6 @@ public class DocenteDAO extends BaseHibernateDAOAlert {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List<Docente> findByApellidos(Object apellidos) {
-		return findByProperty(APELLIDOS, apellidos);
-	}
-
-	public List<Docente> findByCelular(Object celular) {
-		return findByProperty(CELULAR, celular);
-	}
-
-	public List<Docente> findByCodigo(Object codigo) {
-		return findByProperty(CODIGO, codigo);
-	}
-
-	public List<Docente> findByCorreo(Object correo) {
-		return findByProperty(CORREO, correo);
-	}
-
-	public List<Docente> findByCorreoAlternativo(Object correoAlternativo) {
-		return findByProperty(CORREO_ALTERNATIVO, correoAlternativo);
-	}
-
-	public List<Docente> findByDireccion(Object direccion) {
-		return findByProperty(DIRECCION, direccion);
-	}
-
-	public List<Docente> findByDocumento(Object documento) {
-		return findByProperty(DOCUMENTO, documento);
-	}
-
-	public List<Docente> findByNombres(Object nombres) {
-		return findByProperty(NOMBRES, nombres);
-	}
-
-	public List<Docente> findByTelefono(Object telefono) {
-		return findByProperty(TELEFONO, telefono);
 	}
 
 	public List findAll() {

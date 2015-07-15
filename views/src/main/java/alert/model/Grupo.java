@@ -1,8 +1,10 @@
 package alert.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -14,9 +16,7 @@ public class Grupo implements java.io.Serializable {
 
 	// Fields
 
-	private Long idGrupo;
-	private Long aula;
-	private String nombreGrupo;
+	private GrupoId id;
 
 	// Constructors
 
@@ -24,45 +24,23 @@ public class Grupo implements java.io.Serializable {
 	public Grupo() {
 	}
 
-	/** minimal constructor */
-	public Grupo(Long idGrupo) {
-		this.idGrupo = idGrupo;
-	}
-
 	/** full constructor */
-	public Grupo(Long idGrupo, Long aula, String nombreGrupo) {
-		this.idGrupo = idGrupo;
-		this.aula = aula;
-		this.nombreGrupo = nombreGrupo;
+	public Grupo(GrupoId id) {
+		this.id = id;
 	}
 
 	// Property accessors
-	@Id
-	@Column(name = "id_grupo", unique = true, nullable = false)
-	public Long getIdGrupo() {
-		return this.idGrupo;
+	@EmbeddedId
+	@AttributeOverrides({
+			@AttributeOverride(name = "idGrupo", column = @Column(name = "id_grupo", nullable = false)),
+			@AttributeOverride(name = "aula", column = @Column(name = "aula")),
+			@AttributeOverride(name = "nombreGrupo", column = @Column(name = "nombre_grupo", length = 5)) })
+	public GrupoId getId() {
+		return this.id;
 	}
 
-	public void setIdGrupo(Long idGrupo) {
-		this.idGrupo = idGrupo;
-	}
-
-	@Column(name = "aula")
-	public Long getAula() {
-		return this.aula;
-	}
-
-	public void setAula(Long aula) {
-		this.aula = aula;
-	}
-
-	@Column(name = "nombre_grupo", length = 5)
-	public String getNombreGrupo() {
-		return this.nombreGrupo;
-	}
-
-	public void setNombreGrupo(String nombreGrupo) {
-		this.nombreGrupo = nombreGrupo;
+	public void setId(GrupoId id) {
+		this.id = id;
 	}
 
 }

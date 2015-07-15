@@ -26,10 +26,8 @@ import connection.BaseHibernateDAOAlert;
 public class DecanoFacultadDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(DecanoFacultadDAO.class);
+
 	// property constants
-	public static final String ID_FACULTAD = "idFacultad";
-	public static final String MAIL = "mail";
-	public static final String NOM_DECANO = "nomDecano";
 
 	public void save(DecanoFacultad transientInstance) {
 		log.debug("saving DecanoFacultad instance");
@@ -53,7 +51,7 @@ public class DecanoFacultadDAO extends BaseHibernateDAOAlert {
 		}
 	}
 
-	public DecanoFacultad findById(java.lang.Long id) {
+	public DecanoFacultad findById(alert.model.DecanoFacultadId id) {
 		log.debug("getting DecanoFacultad instance with id: " + id);
 		try {
 			DecanoFacultad instance = (DecanoFacultad) getSession().get(
@@ -93,18 +91,6 @@ public class DecanoFacultadDAO extends BaseHibernateDAOAlert {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List<DecanoFacultad> findByIdFacultad(Object idFacultad) {
-		return findByProperty(ID_FACULTAD, idFacultad);
-	}
-
-	public List<DecanoFacultad> findByMail(Object mail) {
-		return findByProperty(MAIL, mail);
-	}
-
-	public List<DecanoFacultad> findByNomDecano(Object nomDecano) {
-		return findByProperty(NOM_DECANO, nomDecano);
 	}
 
 	public List findAll() {

@@ -35,40 +35,6 @@ import connection.BaseHibernateDAOSAC;
 	public static final String NOMBRES = "nombres";
 	public static final String TELEFONO = "telefono";
 
-	public void save(DocenteSAC transientInstance) {
-		log.debug("saving DocenteSAC instance");
-		try {
-			getSession().save(transientInstance);
-			log.debug("save successful");
-		} catch (RuntimeException re) {
-			log.error("save failed", re);
-			throw re;
-		}
-	}
-
-	public void delete(DocenteSAC persistentInstance) {
-		log.debug("deleting DocenteSAC instance");
-		try {
-			getSession().delete(persistentInstance);
-			log.debug("delete successful");
-		} catch (RuntimeException re) {
-			log.error("delete failed", re);
-			throw re;
-		}
-	}
-
-	public DocenteSAC findById(java.lang.Long id) {
-		log.debug("getting DocenteSAC instance with id: " + id);
-		try {
-			DocenteSAC instance = (DocenteSAC) getSession().get(
-					"sac.model.DocenteSAC", id);
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
-
 	public List findByExample(DocenteSAC instance) {
 		log.debug("finding Docente instance by example");
 		try {

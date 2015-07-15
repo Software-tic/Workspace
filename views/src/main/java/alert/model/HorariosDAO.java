@@ -26,9 +26,8 @@ import connection.BaseHibernateDAOAlert;
 public class HorariosDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(HorariosDAO.class);
+
 	// property constants
-	public static final String DIA_DE_CLASE = "diaDeClase";
-	public static final String GRUPO = "grupo";
 
 	public void save(Horarios transientInstance) {
 		log.debug("saving Horarios instance");
@@ -52,7 +51,7 @@ public class HorariosDAO extends BaseHibernateDAOAlert {
 		}
 	}
 
-	public Horarios findById(java.lang.String id) {
+	public Horarios findById(alert.model.HorariosId id) {
 		log.debug("getting Horarios instance with id: " + id);
 		try {
 			Horarios instance = (Horarios) getSession().get(
@@ -92,14 +91,6 @@ public class HorariosDAO extends BaseHibernateDAOAlert {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List<Horarios> findByDiaDeClase(Object diaDeClase) {
-		return findByProperty(DIA_DE_CLASE, diaDeClase);
-	}
-
-	public List<Horarios> findByGrupo(Object grupo) {
-		return findByProperty(GRUPO, grupo);
 	}
 
 	public List findAll() {

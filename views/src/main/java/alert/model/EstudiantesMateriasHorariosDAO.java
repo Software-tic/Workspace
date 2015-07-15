@@ -27,11 +27,8 @@ import connection.BaseHibernateDAOAlert;
 public class EstudiantesMateriasHorariosDAO extends BaseHibernateDAOAlert {
 	private static final Logger log = LoggerFactory
 			.getLogger(EstudiantesMateriasHorariosDAO.class);
+
 	// property constants
-	public static final String HORA_FIN = "horaFin";
-	public static final String HORA_INICIO = "horaInicio";
-	public static final String ID_DIA_SEMANA = "idDiaSemana";
-	public static final String ID_ESTUDIANTE = "idEstudiante";
 
 	public void save(EstudiantesMateriasHorarios transientInstance) {
 		log.debug("saving EstudiantesMateriasHorarios instance");
@@ -55,7 +52,8 @@ public class EstudiantesMateriasHorariosDAO extends BaseHibernateDAOAlert {
 		}
 	}
 
-	public EstudiantesMateriasHorarios findById(java.lang.String id) {
+	public EstudiantesMateriasHorarios findById(
+			alert.model.EstudiantesMateriasHorariosId id) {
 		log.debug("getting EstudiantesMateriasHorarios instance with id: " + id);
 		try {
 			EstudiantesMateriasHorarios instance = (EstudiantesMateriasHorarios) getSession()
@@ -96,24 +94,6 @@ public class EstudiantesMateriasHorariosDAO extends BaseHibernateDAOAlert {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List<EstudiantesMateriasHorarios> findByHoraFin(Object horaFin) {
-		return findByProperty(HORA_FIN, horaFin);
-	}
-
-	public List<EstudiantesMateriasHorarios> findByHoraInicio(Object horaInicio) {
-		return findByProperty(HORA_INICIO, horaInicio);
-	}
-
-	public List<EstudiantesMateriasHorarios> findByIdDiaSemana(
-			Object idDiaSemana) {
-		return findByProperty(ID_DIA_SEMANA, idDiaSemana);
-	}
-
-	public List<EstudiantesMateriasHorarios> findByIdEstudiante(
-			Object idEstudiante) {
-		return findByProperty(ID_ESTUDIANTE, idEstudiante);
 	}
 
 	public List findAll() {
